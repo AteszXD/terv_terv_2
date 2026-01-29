@@ -41,5 +41,10 @@ namespace KockasFuzet.Models
         public DateTime Hatarido { get { return hatarido; } set { hatarido = value; } }
         public DateTime Befizetve { get { return befizetve; } set { befizetve = value; } }
         public string Megjegyzes { get { return megjegyzes; } set { megjegyzes = value; } }
+
+        public override string ToString()
+        {
+            return $"Id: {Id}, Azonosító {SzolgaltatasAzon}, Rövid név: {SzolgaltatasRovid}, Tól: {Tol}, Ig: {Ig}, Összeg: {Osszeg}, Határidő: {Hatarido}, Befizetve: {Befizetve}, Megjegyzés: {Megjegyzes}";
+        }
     }
 }
