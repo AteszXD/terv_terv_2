@@ -13,7 +13,7 @@ namespace KockasFuzet.Controllers
             connection.ConnectionString = connectionString;
             connection.Open();
 
-            string cmd = "SELECT * FROM szolgaltatas";
+            string cmd = "SELECT * FROM szamla";
             MySqlCommand command = new MySqlCommand(cmd, connection);
             List<Szamla> szamlak = new List<Szamla>();
 
