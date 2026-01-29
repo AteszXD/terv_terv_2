@@ -16,11 +16,11 @@ namespace KockasFuzet.Views
             Console.WriteLine($"Id: {szamla.Id}");
             Console.WriteLine($"SzolgaltatasAzon: {szamla.SzolgaltatasAzon}");
             Console.WriteLine($"SzolgaltatasRovid: {szamla.SzolgaltatasRovid}");
-            Console.WriteLine($"Tól: {szamla.Tol}");
-            Console.WriteLine($"Ig: {szamla.Ig}");
+            Console.WriteLine($"Tól: {szamla.Tol.ToString("yyyy-MM-dd")}");
+            Console.WriteLine($"Ig: {szamla.Ig.ToString("yyyy-MM-dd")}");
             Console.WriteLine($"Osszeg: {szamla.Osszeg}");
-            Console.WriteLine($"Határidő: {szamla.Hatarido}");
-            Console.WriteLine($"Befizetve: {szamla.Befizetve}");
+            Console.WriteLine($"Határidő: {szamla.Hatarido.ToString("yyyy-MM-dd")}");
+            Console.WriteLine($"Befizetve: {szamla.Befizetve.ToString("yyyy-MM-dd")}");
             Console.WriteLine($"Megjegyzés: {szamla.Megjegyzes}");
         }
 

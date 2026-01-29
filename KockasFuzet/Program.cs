@@ -17,8 +17,11 @@ namespace KockasFuzet
             Console.WriteLine("5. Szolgáltatások listázása");
             Console.WriteLine("6. Számlák listázása");
             Console.WriteLine("7. Kilépés");
+            Console.WriteLine();
 
             string valasz = Console.ReadLine();
+            Console.WriteLine();
+
             switch (valasz)
             {
                 case "1":
