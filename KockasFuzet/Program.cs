@@ -16,7 +16,8 @@ namespace KockasFuzet
             Console.WriteLine("4. Szolgáltatók listáza");
             Console.WriteLine("5. Szolgáltatások listázása");
             Console.WriteLine("6. Számlák listázása");
-            Console.WriteLine("7. Kilépés");
+            Console.WriteLine("7. Szolgáltató felvétele");
+            Console.WriteLine("999. Kilépés");
             Console.WriteLine();
 
             string valasz = Console.ReadLine();
@@ -55,6 +56,20 @@ namespace KockasFuzet
                     new SzamlaView().ShowSzamlaList(szamladb);
                     break;
                 case "7":
+                    Console.Write("Rövid Név: ");
+                    string rnev = Console.ReadLine();
+
+                    Console.Write("Név: ");
+                    string tnev = Console.ReadLine();
+
+                    Console.Write("Ügyfélszolgálat: ");
+                    string ugyf = Console.ReadLine();
+
+                    Szolgaltato szolgaltato = new Szolgaltato(rnev, tnev, ugyf);
+                    Console.WriteLine(new SzolgaltatoController().CreateSzolgaltato(szolgaltato));
+
+                    break;
+                case "999":
                     Environment.Exit(0);
                     break;
             }
