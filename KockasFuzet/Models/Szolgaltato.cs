@@ -17,8 +17,13 @@
 
         }
 
-        public string RovidNev { get => rovidNev; set => rovidNev = value; }
-        public string Nev { get => nev; set => nev = value; }
-        public string Ugyfelszolgalat { get => ugyfelszolgalat; set => ugyfelszolgalat = value; }
+        public string RovidNev { get { return rovidNev; } set { rovidNev = value; } }
+        public string Nev { get { return nev; } set { nev = value; } }
+        public string Ugyfelszolgalat { get { return ugyfelszolgalat; } set { ugyfelszolgalat = value; } }
+
+        public override string ToString()
+        {
+            return $"Rövid név: {RovidNev}, Név: {Nev}, Ügyfélszolgálat: {Ugyfelszolgalat}";
+        }
     }
 }

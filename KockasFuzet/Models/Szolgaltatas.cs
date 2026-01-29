@@ -16,7 +16,12 @@
 
         }
 
-        public int Id { get => id; set => id = value; }
-        public string Nev { get => nev; set => nev = value; }
+        public int Id { get { return id; } set { id = value; } }
+        public string Nev { get { return nev; } set { nev = value; } }
+
+        public override string ToString()
+        {
+            return $"Id: {Id}, Név: {Nev}";
+        }
     }
 }

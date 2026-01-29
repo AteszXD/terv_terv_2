@@ -32,14 +32,14 @@ namespace KockasFuzet.Models
             
         }
 
-        public int Id { get => id; set => id = value; }
-        public string SzolgaltatasAzon { get => szolgaltatasAzon; set => szolgaltatasAzon = value; }
-        public string SzolgaltatasRovid { get => szolgaltatasRovid; set => szolgaltatasRovid = value; }
-        public DateTime Tol { get => tol; set => tol = value; }
-        public DateTime Ig { get => ig; set => ig = value; }
-        public int Osszeg { get => osszeg; set => osszeg = value; }
-        public DateTime Hatarido { get => hatarido; set => hatarido = value; }
-        public DateTime Befizetve { get => befizetve; set => befizetve = value; }
-        public string Megjegyzes { get => megjegyzes; set => megjegyzes = value; }
+        public int Id { get { return id; } set { id = value; } }
+        public string SzolgaltatasAzon { get { return szolgaltatasAzon; } set { szolgaltatasAzon = value; } }
+        public string SzolgaltatasRovid { get { return szolgaltatasRovid; } set { szolgaltatasRovid = value; } }
+        public DateTime Tol { get { return tol; } set { tol = value; } }
+        public DateTime Ig { get { return ig; } set { ig = value; } }
+        public int Osszeg { get { return osszeg; } set { osszeg = value; } }
+        public DateTime Hatarido { get { return hatarido; } set { hatarido = value; } }
+        public DateTime Befizetve { get { return befizetve; } set { befizetve = value; } }
+        public string Megjegyzes { get { return megjegyzes; } set { megjegyzes = value; } }
     }
 }

@@ -57,5 +57,8 @@
     <Content Include="Database\kockasfuzet.sql" />
     <Content Include="Database\relacio.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
