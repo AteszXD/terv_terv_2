@@ -29,8 +29,8 @@ namespace KockasFuzet.Controllers
                     Ig = reader.GetDateTime("Ig"),
                     Osszeg = reader.GetInt32("Osszeg"),
                     Hatarido = reader.GetDateTime("Hatarido"),
-                    Befizetve = reader.GetDateTime("Befizetve"),
-                    Megjegyzes = reader.GetString("Megjegyzes")
+                    Befizetve = reader.GetDateTime("Befizetve")//,
+                    //Megjegyzes = reader.GetString("Megjegyzes")
                 });
             }
 
