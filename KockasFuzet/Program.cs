@@ -10,37 +10,48 @@ namespace KockasFuzet
     {
         static void Main(string[] _)
         {
-            Console.WriteLine("1. Adott szolgáltató kiírása");
-            Console.WriteLine("2. Szolgáltatók listáza");
-            Console.WriteLine("3. Szolgáltatások listázása");
-            Console.WriteLine("4. Számlák listázása");
-            Console.WriteLine("999. Kilépés");
+            Console.WriteLine("1. Random szolgáltató kiírása");
+            Console.WriteLine("2. Random szolgáltatás kiírása");
+            Console.WriteLine("3. Random számla kiírása");
+            Console.WriteLine("4. Szolgáltatók listáza");
+            Console.WriteLine("5. Szolgáltatások listázása");
+            Console.WriteLine("6. Számlák listázása");
+            Console.WriteLine("7. Kilépés");
 
             string valasz = Console.ReadLine();
             switch (valasz)
             {
                 case "1":
-                    Szolgaltato szolgaltato = new Szolgaltato()
-                    {
-                        RovidNev = "ABC",
-                        Nev = "Helyi kis ABC",
-                        Ugyfelszolgalat = "Miskolc, Búza tér 2/B"
-                    };
-                    new SzolgaltatoView().ShowSzolgaltato(szolgaltato);
+                    List<Szolgaltato> _szolgaltatodb = new SzolgaltatoController().GetSzolgaltatoList();
+                    Random random = new Random();
+                    int i = random.Next(_szolgaltatodb.Count);
+                    new SzolgaltatoView().ShowSzolgaltato(_szolgaltatodb[i]);
                     break;
                 case "2":
+                    List<Szolgaltatas> _szolgaltatasdb = new SzolgaltatasController().GetSzolgaltatasList();
+                    random = new Random();
+                    i = random.Next(_szolgaltatasdb.Count);
+                    new SzolgaltatasView().ShowSzolgaltatas(_szolgaltatasdb[i]);
+                    break;
+                case "3":
+                    List<Szamla> _szamladb = new SzamlaController().GetSzamlaList();
+                    random = new Random();
+                    i = random.Next(_szamladb.Count);
+                    new SzamlaView().ShowSzamla(_szamladb[i]);
+                    break;
+                case "4":
                     List<Szolgaltato> szolgaltatodb = new SzolgaltatoController().GetSzolgaltatoList();
                     new SzolgaltatoView().ShowSzolgaltatoList(szolgaltatodb);
                     break;
-                case "3":
+                case "5":
                     List<Szolgaltatas> szolgaltatasdb = new SzolgaltatasController().GetSzolgaltatasList();
                     new SzolgaltatasView().ShowSzolgaltatasList(szolgaltatasdb);
                     break;
-                case "4":
+                case "6":
                     List<Szamla> szamladb = new SzamlaController().GetSzamlaList();
                     new SzamlaView().ShowSzamlaList(szamladb);
                     break;
-                case "999":
+                case "7":
                     Environment.Exit(0);
                     break;
             }
