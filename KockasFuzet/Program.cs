@@ -12,7 +12,8 @@ namespace KockasFuzet
         {
             Console.WriteLine("1. Adott szolgáltató kiírása");
             Console.WriteLine("2. Szolgáltatók listáza");
-            Console.WriteLine("3. Kilépés");
+            Console.WriteLine("3. Szolgáltatások listázása");
+            Console.WriteLine("999. Kilépés");
 
             string valasz = Console.ReadLine();
             switch (valasz)
@@ -27,32 +28,18 @@ namespace KockasFuzet
                     new SzolgaltatoView().ShowSzolgaltato(szolgaltato);
                     break;
                 case "2":
-                    //List<Szolgaltato> szolgaltatok = new List<Szolgaltato>()
-                    //{
-                    //    new Szolgaltato()
-                    //    {
-                    //        RovidNev = "ABC",
-                    //        Nev = "Helyi kis ABC",
-                    //        Ugyfelszolgalat = "Miskolc, Búza tér 2/B"
-                    //    },
-                    //    new Szolgaltato()
-                    //    {
-                    //        RovidNev = "DEF",
-                    //        Nev = "Nem Helyi nem kis DEF",
-                    //        Ugyfelszolgalat = "Nem Miskolc, Fű körút 25/Y"
-                    //    },
-                    //    new Szolgaltato()
-                    //    {
-                    //        RovidNev = "GHI",
-                    //        Nev = "Hallod én ehhez nem vagyok elég kreatív",
-                    //        Ugyfelszolgalat = "Valami"
-                    //    }
-                    //};
-                    //new SzolgaltatoView().ShowSzolgaltatoList(szolgaltatok);
                     List<Szolgaltato> szolgaltatodb = new SzolgaltatoController().GetSzolgaltatoList();
                     new SzolgaltatoView().ShowSzolgaltatoList(szolgaltatodb);
                     break;
                 case "3":
+                    List<Szolgaltatas> szolgaltatasdb = new SzolgaltatasController().GetSzolgaltatasList();
+                    new SzolgaltatasView().ShowSzolgaltatasList(szolgaltatasdb);
+                    break;
+                case "4":
+                    List<Szamla> szamladb = new SzamlaController().GetSzamlaList();
+                    new SzamlaView().ShowSzolgaltatasList(szamladb);
+                    break;
+                case "999":
                     Environment.Exit(0);
                     break;
             }

@@ -22,15 +22,15 @@ namespace KockasFuzet.Views
 
         public void ShowSzolgaltatoList(List<Szolgaltato> szolgaltatok)
         {
-            Console.WriteLine("|--------|-------------------------------|-------------------------------|-------------|");
+            Console.WriteLine("+--------+-------------------------------+-------------------------------+-------------+");
             Console.WriteLine("|Rövidnév|             Név               |        Ügyfélszolgálat        |   Telefon   |");
             foreach (Szolgaltato szolgaltato in szolgaltatok)
             {
                 //120*30 méret
-                Console.WriteLine("|--------|-------------------------------|-------------------------------|-------------|");
+                Console.WriteLine("+--------+-------------------------------+-------------------------------+-------------+");
                 Console.WriteLine(SzolgaltatoToRow(szolgaltato));
             }
-            Console.WriteLine("|--------|-------------------------------|-------------------------------|-------------|");
+            Console.WriteLine("+--------+-------------------------------+-------------------------------+-------------+");
         }
 
         private static string SzolgaltatoToRow(Szolgaltato szolgaltato)
