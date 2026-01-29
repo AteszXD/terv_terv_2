@@ -5,7 +5,7 @@ namespace KockasFuzet.Models
     internal class Szamla
     {
         private int id;
-        private string szolgaltatasAzon;
+        private int szolgaltatasAzon;
         private string szolgaltatasRovid;
         private DateTime tol;
         private DateTime ig;
@@ -14,7 +14,7 @@ namespace KockasFuzet.Models
         private DateTime befizetve;
         private string megjegyzes;
 
-        public Szamla(int id, string szolgaltatasAzon, string szolgaltatasRovid, DateTime tol, DateTime ig, int osszeg, DateTime hatarido, DateTime befizetve, string megjegyzes)
+        public Szamla(int id, int szolgaltatasAzon, string szolgaltatasRovid, DateTime tol, DateTime ig, int osszeg, DateTime hatarido, DateTime befizetve, string megjegyzes)
         {
             this.Id = id;
             this.SzolgaltatasAzon = szolgaltatasAzon;
@@ -33,7 +33,7 @@ namespace KockasFuzet.Models
         }
 
         public int Id { get { return id; } set { id = value; } }
-        public string SzolgaltatasAzon { get { return szolgaltatasAzon; } set { szolgaltatasAzon = value; } }
+        public int SzolgaltatasAzon { get { return szolgaltatasAzon; } set { szolgaltatasAzon = value; } }
         public string SzolgaltatasRovid { get { return szolgaltatasRovid; } set { szolgaltatasRovid = value; } }
         public DateTime Tol { get { return tol; } set { tol = value; } }
         public DateTime Ig { get { return ig; } set { ig = value; } }

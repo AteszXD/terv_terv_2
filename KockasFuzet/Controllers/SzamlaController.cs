@@ -23,7 +23,7 @@ namespace KockasFuzet.Controllers
                 szamlak.Add(new Szamla()
                 {
                     Id = reader.GetInt32("Id"),
-                    SzolgaltatasAzon = reader.GetString("SzolgaltatasAzon"),
+                    SzolgaltatasAzon = reader.GetInt32("SzolgaltatasAzon"),
                     SzolgaltatasRovid = reader.GetString("SzolgaltatasRovid"),
                     Tol = reader.GetDateTime("Tol"),
                     Ig = reader.GetDateTime("Ig"),

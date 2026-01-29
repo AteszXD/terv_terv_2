@@ -42,7 +42,7 @@ namespace KockasFuzet.Views
             string row = "|";
             row += szamla.Id;
             row += new string(' ', 3 - szamla.Id.ToString().Length) + "|";
-            row += szamla.SzolgaltatasAzon.Length < 16 ? szamla.SzolgaltatasAzon + new string(' ', 16 - szamla.SzolgaltatasAzon.Length + 1) + "|" : szamla.SzolgaltatasAzon.Substring(0, 14) + "...|";
+            row += szamla.SzolgaltatasAzon.ToString().Length < 16 ? szamla.SzolgaltatasAzon.ToString() + new string(' ', 16 - szamla.SzolgaltatasAzon.ToString().Length + 1) + "|" : szamla.SzolgaltatasAzon.ToString().Substring(0, 14) + "...|";
             row += szamla.SzolgaltatasRovid.Length < 17 ? szamla.SzolgaltatasRovid + new string(' ', 17 - szamla.SzolgaltatasRovid.Length + 1) + "|" : szamla.SzolgaltatasRovid.Substring(0, 15) + "...|";
             row += szamla.Tol.ToString("yyyy-MM-dd").Length < 10 ? szamla.Tol.ToString("yyyy-MM-dd") + new string(' ', 10 - szamla.Tol.ToString("yyyy-MM-dd").Length + 1) + "|" : szamla.Tol.ToString("yyyy-MM-dd").Substring(0, 10);
             row += szamla.Ig.ToString("yyyy-MM-dd").Length < 10 ? szamla.Ig.ToString("yyyy-MM-dd") + new string(' ', 10 - szamla.Ig.ToString("yyyy-MM-dd").Length + 1) + "|" : szamla.Ig.ToString("yyyy-MM-dd").Substring(0, 10);
