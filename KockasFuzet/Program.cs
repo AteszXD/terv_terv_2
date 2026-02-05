@@ -20,6 +20,9 @@ namespace KockasFuzet
             Console.WriteLine("7. Szolgáltató módosítása");
             Console.WriteLine("8. Szolgáltatás módosítása");
             Console.WriteLine("9. Számla módosítása");
+            Console.WriteLine("10. Szolgáltató törlése");
+            Console.WriteLine("11. Szolgáltatás törlése");
+            Console.WriteLine("12. Számla törlése");
             Console.WriteLine("996. Random szolgáltató kiírása");     // View teszt
             Console.WriteLine("997. Random szolgáltatás kiírása");    // View teszt
             Console.WriteLine("998. Random számla kiírása");          // View teszt
@@ -74,6 +77,19 @@ namespace KockasFuzet
                 case "9":
                     Console.WriteLine(new SzamlaController().UpdateSzamla(SzamlaBekeres()));
                     break;
+                #endregion
+
+                #region Törlés
+                case "10":
+                    break;
+
+                case "11":
+                    break;
+
+                case "12":
+                    Console.WriteLine(new SzamlaController().DeleteSzamla());
+                    break;
+
                 #endregion
 
                 #region Debug

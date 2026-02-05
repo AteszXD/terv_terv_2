@@ -99,8 +99,6 @@ namespace KockasFuzet.Controllers
 
         public string UpdateSzamla(Szamla szamla)
         {
-            //Console.Clear();
-
             MySqlConnection connection = new MySqlConnection();
             string connectionString = "SERVER=localhost;DATABASE=kockasfuzet;UID=root;PASSWORD=;";
             connection.ConnectionString = connectionString;
@@ -140,7 +138,44 @@ namespace KockasFuzet.Controllers
 
             connection.Close();
 
-            string valasz = sorokSzama > 0 ? "Sikeres frissítés" : "frissítés";
+            string valasz = sorokSzama > 0 ? "Sikeres frissítés" : "Sikertelen frissítés";
+            return valasz;
+        }
+
+        public string DeleteSzamla()
+        {
+            MySqlConnection connection = new MySqlConnection();
+            string connectionString = "SERVER=localhost;DATABASE=kockasfuzet;UID=root;PASSWORD=;";
+            connection.ConnectionString = connectionString;
+            connection.Open();
+
+            List<Szamla> szamladb = new SzamlaController().GetSzamlaList();
+            Console.WriteLine();
+            new SzamlaView().ShowSzamlaList(szamladb);
+            Console.WriteLine();
+
+            Console.Write("A törlendő számla Id-je: ");
+            int id = int.Parse(Console.ReadLine());
+
+            string cmd = "DELETE FROM `szamla` WHERE Id=@Id";
+            MySqlCommand command = new MySqlCommand(cmd, connection);
+
+            command.Parameters.AddWithValue("@id", id);
+
+            int sorokSzama;
+
+            try
+            {
+                sorokSzama = command.ExecuteNonQuery();
+            }
+            catch (MySqlException)
+            {
+                sorokSzama = 0;
+            }
+
+            connection.Close();
+
+            string valasz = sorokSzama > 0 ? "Sikeres törlés" : "Sikertelen törlés";
             return valasz;
         }
     }

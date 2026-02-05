@@ -113,7 +113,7 @@ namespace KockasFuzet.Controllers
             int sorokSzama = command.ExecuteNonQuery();
             connection.Close();
 
-            string valasz = sorokSzama > 0 ? "Sikeres rögzítés" : "Sikertelen rögzítés";
+            string valasz = sorokSzama > 0 ? "Sikeres frissítés" : "Sikertelen frissítés";
             return valasz;
         }
     }
