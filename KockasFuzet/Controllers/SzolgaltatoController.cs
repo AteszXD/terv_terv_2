@@ -1,6 +1,7 @@
 ﻿using KockasFuzet.Models;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
+using System;
 
 namespace KockasFuzet.Controllers
 {
@@ -11,25 +12,34 @@ namespace KockasFuzet.Controllers
             MySqlConnection connection = new MySqlConnection();
             string connectionString = "SERVER=localhost;DATABASE=kockasfuzet;UID=root;PASSWORD=;";
             connection.ConnectionString = connectionString;
-            connection.Open();
 
-            string cmd = "SELECT * FROM szolgaltato";
-            MySqlCommand command = new MySqlCommand(cmd, connection);
-            List<Szolgaltato> szolgaltatok = new List<Szolgaltato>();
-
-            MySqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
+            try
             {
-                szolgaltatok.Add(new Szolgaltato()
+                connection.Open();
+
+                string cmd = "SELECT * FROM szolgaltato";
+                MySqlCommand command = new MySqlCommand(cmd, connection);
+                List<Szolgaltato> szolgaltatok = new List<Szolgaltato>();
+
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    RovidNev = reader.GetString("RovidNev"),
-                    Nev = reader.GetString("Nev"),
-                    Ugyfelszolgalat = reader.GetString("Ugyfelszolgalat")
-                });
+                    szolgaltatok.Add(new Szolgaltato()
+                    {
+                        RovidNev = reader.GetString("RovidNev"),
+                        Nev = reader.GetString("Nev"),
+                        Ugyfelszolgalat = reader.GetString("Ugyfelszolgalat")
+                    });
+                }
+
+                connection.Close();
+                return szolgaltatok;
+            }
+            catch (Exception)
+            {
+                return new List<Szolgaltato>();
             }
 
-            connection.Close();
-            return szolgaltatok;
         }
 
         public string CreateSzolgaltato(Szolgaltato szolgaltato)
