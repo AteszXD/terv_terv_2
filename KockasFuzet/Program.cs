@@ -11,18 +11,27 @@ namespace KockasFuzet
     {
         static void Main(string[] _)
         {
+            Console.WriteLine("------- Listázás -------");
             Console.WriteLine("1. Szolgáltatók listáza");
             Console.WriteLine("2. Szolgáltatások listázása");
             Console.WriteLine("3. Számlák listázása");
+            Console.WriteLine();
+            Console.WriteLine("------- Felvétel -------");
             Console.WriteLine("4. Szolgáltató felvétele");
             Console.WriteLine("5. Szolgáltatás felvétele");
             Console.WriteLine("6. Számla felvétele");
+            Console.WriteLine();
+            Console.WriteLine("------- Módosítás -------");
             Console.WriteLine("7. Szolgáltató módosítása");
             Console.WriteLine("8. Szolgáltatás módosítása");
             Console.WriteLine("9. Számla módosítása");
+            Console.WriteLine();
+            Console.WriteLine("------- Törlés -------");
             Console.WriteLine("10. Szolgáltató törlése");
             Console.WriteLine("11. Szolgáltatás törlése");
             Console.WriteLine("12. Számla törlése");
+            Console.WriteLine();
+            Console.WriteLine("------- Debug -------");
             Console.WriteLine("996. Random szolgáltató kiírása");     // View teszt
             Console.WriteLine("997. Random szolgáltatás kiírása");    // View teszt
             Console.WriteLine("998. Random számla kiírása");          // View teszt
@@ -50,7 +59,6 @@ namespace KockasFuzet
                     new SzamlaView().ShowSzamlaList(szamladb);
                     break;
                 #endregion
-
                 #region Felvétel
                 case "4":
                     Console.WriteLine(new SzolgaltatoController().CreateSzolgaltato(SzolgaltatoBekeres()));
@@ -81,9 +89,11 @@ namespace KockasFuzet
 
                 #region Törlés
                 case "10":
+                    Console.WriteLine(new SzolgaltatoController().DeleteSzolgaltato());
                     break;
 
                 case "11":
+                    Console.WriteLine(new SzolgaltatasController().DeleteSzolgaltatas());
                     break;
 
                 case "12":

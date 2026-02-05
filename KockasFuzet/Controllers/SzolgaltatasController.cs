@@ -116,5 +116,33 @@ namespace KockasFuzet.Controllers
             string valasz = sorokSzama > 0 ? "Sikeres frissítés" : "Sikertelen frissítés";
             return valasz;
         }
+
+        public string DeleteSzolgaltatas()
+        {
+            MySqlConnection connection = new MySqlConnection();
+            string connectionString = "SERVER=localhost;DATABASE=kockasfuzet;UID=root;PASSWORD=;";
+            connection.ConnectionString = connectionString;
+            connection.Open();
+
+            List<Szolgaltatas> szolgaltatasdb = new SzolgaltatasController().GetSzolgaltatasList();
+            Console.WriteLine();
+            new SzolgaltatasView().ShowSzolgaltatasList(szolgaltatasdb);
+            Console.WriteLine();
+
+            Console.Write("A törlendő szolgáltatás Id-je: ");
+            int id = int.Parse(Console.ReadLine());
+
+            string cmd = "DELETE FROM `szolgaltatas` WHERE Id=@Id";
+            MySqlCommand command = new MySqlCommand(cmd, connection);
+
+            command.Parameters.AddWithValue("@id", id);
+
+            int sorokSzama = command.ExecuteNonQuery();
+
+            connection.Close();
+
+            string valasz = sorokSzama > 0 ? "Sikeres törlés" : "Sikertelen törlés";
+            return valasz;
+        }
     }
 }
