@@ -17,6 +17,7 @@ namespace KockasFuzet
             Console.WriteLine("4. Szolgáltató felvétele");
             Console.WriteLine("5. Szolgáltatás felvétele");
             Console.WriteLine("6. Számla felvétele");
+            Console.WriteLine("7. Szolgáltató módosítása");
             Console.WriteLine("8. Szolgáltatás módosítása");
             Console.WriteLine("9. Számla módosítása");
             Console.WriteLine("996. Random szolgáltató kiírása");     // View teszt
@@ -62,6 +63,10 @@ namespace KockasFuzet
                 #endregion
 
                 #region Módosítás
+                case "7":
+                    Console.WriteLine(new SzolgaltatoController().UpdateSzolgaltato(SzolgaltatoBekeres()));
+                    break;
+                
                 case "8":
                     Console.WriteLine(new SzolgaltatasController().UpdateSzolgaltatas(SzolgaltatasBekeres()));
                     break;
