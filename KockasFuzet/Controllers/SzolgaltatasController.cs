@@ -39,5 +39,24 @@ namespace KockasFuzet.Controllers
                 return new List<Szolgaltatas>();
             }
         }
+
+        public string CreateSzolgaltatas(Szolgaltatas szolgaltatas)
+        {
+            MySqlConnection connection = new MySqlConnection();
+            string connectionString = "SERVER=localhost;DATABASE=kockasfuzet;UID=root;PASSWORD=;";
+            connection.ConnectionString = connectionString;
+            connection.Open();
+
+            string cmd = "INSERT INTO `szolgaltatas`(`Id`, `Nev`) VALUES (null,@Nev)";
+            MySqlCommand command = new MySqlCommand(cmd, connection);
+
+            command.Parameters.AddWithValue("@Nev", szolgaltatas.Nev);
+
+            int sorokSzama = command.ExecuteNonQuery();
+            connection.Close();
+
+            string valasz = sorokSzama > 0 ? "Sikeres rögzítés" : "Sikertelen rögzítés";
+            return valasz;
+        }
     }
 }
