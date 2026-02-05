@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using KockasFuzet.Models;
 using KockasFuzet.Views;
 using KockasFuzet.Controllers;
+using System.Globalization;
 
 namespace KockasFuzet
 {
@@ -54,16 +55,133 @@ namespace KockasFuzet
 
                     break;
                 case "5":
-                    int id = -1; // Amúgy se fogja használni
+                    int idSzolg = -1; // Amúgy se fogja használni
 
                     Console.Write("Név: ");
                     string nev = Console.ReadLine();
 
-                    Szolgaltatas szolgaltatas = new Szolgaltatas(id, nev);
+                    Szolgaltatas szolgaltatas = new Szolgaltatas(idSzolg, nev);
                     Console.WriteLine(new SzolgaltatasController().CreateSzolgaltatas(szolgaltatas));
 
                     break;
                 case "6":
+                    int idSzamla = -1; // Amúgy se fogja használni
+
+                    int szolgAzon;
+                    while (true)
+                    {
+                        Console.Write("Szolgáltatás azonosító: ");
+                        try
+                        {
+                            szolgAzon = int.Parse(Console.ReadLine());
+                            if (szolgAzon > 0)
+                            {
+                                break;
+                            }
+                            throw new Exception();
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Ide pozitív szám kell");
+                        }
+                    }
+
+                    Console.Write("Szolgáltató rövid neve: ");
+                    string szolgRovid = Console.ReadLine();
+
+                    DateTime tol;
+                    while (true)
+                    {
+                        Console.Write("Tol (ÉÉÉÉ-HH-NN): ");
+                        try
+                        {
+                            tol = DateTime.ParseExact(Console.ReadLine(), "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                            break;
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Érvénytelen dátum!");
+                        }  
+                    }
+
+                    DateTime ig;
+                    while (true)
+                    {
+                        Console.Write("Ig (ÉÉÉÉ-HH-NN): ");
+                        try
+                        {
+                            ig = DateTime.ParseExact(Console.ReadLine(), "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                            break;
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Érvénytelen dátum!");
+                        }
+                    }
+
+                    int osszeg;
+                    while (true)
+                    {                    
+                        Console.Write("Összeg (Ft): ");
+                        try
+                        {
+                            osszeg = int.Parse(Console.ReadLine());
+                            if (osszeg > 0)
+                            {
+                                break;
+                            }
+                            throw new Exception();
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Ide pozitív szám kell");
+                        }
+                    }
+
+                    DateTime hatarido;
+                    while (true)
+                    {
+                        Console.Write("Határidő (ÉÉÉÉ-HH-NN): ");
+                        try
+                        {
+                            hatarido = DateTime.ParseExact(Console.ReadLine(), "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                            break;
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Érvénytelen dátum!");
+                        }
+                    }
+
+                    Console.Write("Befizetve (ÉÉÉÉ-HH-NN, Üres ha még nem): ");
+                    string inp = Console.ReadLine();
+                    DateTime befizetve;
+                    if (string.IsNullOrEmpty(inp)) // 1494. november 6
+                    {
+                        befizetve = DateTime.ParseExact("1494-11-06", "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                    }
+                    else
+                    {
+                        while (true)
+                        {
+                            try
+                            {
+                                befizetve = DateTime.ParseExact(inp, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                                break;
+                            }
+                            catch (Exception)
+                            {                            
+                                Console.Write("Befizetve (ÉÉÉÉ-HH-NN, Üres ha még nem): ");
+                                Console.WriteLine("Érvénytelen dátum!");
+                            }
+                        }
+                    }
+
+                    Console.Write("Megjegyzés: ");
+                    string megjegyzes = Console.ReadLine();
+
+                    Szamla szamla = new Szamla(idSzamla,szolgAzon,szolgRovid,tol,ig,osszeg,hatarido,befizetve,megjegyzes);
+                    Console.WriteLine(new SzamlaController().CreateSzamla(szamla));
 
                     break;
                 case "996":

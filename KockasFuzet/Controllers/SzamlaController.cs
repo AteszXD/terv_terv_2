@@ -67,19 +67,29 @@ namespace KockasFuzet.Controllers
             connection.ConnectionString = connectionString;
             connection.Open();
 
-            string cmd = "INSERT INTO `szolgaltato`(`Id`, `SzolgaltatasAzon`, `SzolgaltatasRovid`, `Tol`, `Ig`, `Osszeg`, `Hatarido`, `Befizetve`, `Megjegyzes`) VALUES (null,@SzolgaltatasAzon,@SzolgaltatasRovid,@Tol,@Ig,@Osszeg,@Hatarido,@Befizetve,@Megjegyzes)";
+            string cmd = "INSERT INTO `szamla`(`Id`, `SzolgaltatasAzon`, `SzolgaltatasRovid`, `Tol`, `Ig`, `Osszeg`, `Hatarido`, `Befizetve`, `Megjegyzes`) VALUES (null,@SzolgaltatasAzon,@SzolgaltatasRovid,@Tol,@Ig,@Osszeg,@Hatarido,@Befizetve,@Megjegyzes)";
             MySqlCommand command = new MySqlCommand(cmd, connection);
 
-            command.Parameters.AddWithValue("@Nev", szamla.SzolgaltatasAzon);
-            command.Parameters.AddWithValue("@Ugyfelszolgalat", szamla.SzolgaltatasRovid);
+            command.Parameters.AddWithValue("@SzolgaltatasAzon", szamla.SzolgaltatasAzon);
+            command.Parameters.AddWithValue("@SzolgaltatasRovid", szamla.SzolgaltatasRovid);
             command.Parameters.AddWithValue("@Tol", szamla.Tol);
             command.Parameters.AddWithValue("@Ig", szamla.Ig);
             command.Parameters.AddWithValue("@Osszeg", szamla.Osszeg);
             command.Parameters.AddWithValue("@Hatarido", szamla.Hatarido);
             command.Parameters.AddWithValue("@Befizetve", szamla.Befizetve);
-            command.Parameters.AddWithValue("@Megjegyzés", szamla.Megjegyzes);
+            command.Parameters.AddWithValue("@Megjegyzes", szamla.Megjegyzes);
 
-            int sorokSzama = command.ExecuteNonQuery();
+            int sorokSzama;
+
+            try
+            {
+                sorokSzama = command.ExecuteNonQuery();
+            }
+            catch (MySqlException)
+            {
+                sorokSzama = 0;
+            }
+            
             connection.Close();
 
             string valasz = sorokSzama > 0 ? "Sikeres rögzítés" : "Sikertelen rögzítés";
