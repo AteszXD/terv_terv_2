@@ -1,9 +1,10 @@
 ﻿using KockasFuzet.Models;
+using KockasFuzet.Views;
 using MySql.Data.MySqlClient;
-using System.Collections.Generic;
 using System;
-using System.Data.SqlTypes;
 using System.CodeDom;
+using System.Collections.Generic;
+using System.Data.SqlTypes;
 
 namespace KockasFuzet.Controllers
 {
@@ -93,6 +94,53 @@ namespace KockasFuzet.Controllers
             connection.Close();
 
             string valasz = sorokSzama > 0 ? "Sikeres rögzítés" : "Sikertelen rögzítés";
+            return valasz;
+        }
+
+        public string UpdateSzamla(Szamla szamla)
+        {
+            //Console.Clear();
+
+            MySqlConnection connection = new MySqlConnection();
+            string connectionString = "SERVER=localhost;DATABASE=kockasfuzet;UID=root;PASSWORD=;";
+            connection.ConnectionString = connectionString;
+            connection.Open();
+
+            List<Szamla> szamladb = new SzamlaController().GetSzamlaList();
+            Console.WriteLine();
+            new SzamlaView().ShowSzamlaList(szamladb);
+            Console.WriteLine();
+
+            Console.Write("A módosítandó számla Id-ja: ");
+            int id = int.Parse(Console.ReadLine());
+
+            string cmd = "UPDATE `szamla` SET Id=@Id,SzolgaltatasAzon=@SzolgaltatasAzon,SzolgaltatasRovid=@SzolgaltatasRovid,Tol=@Tol,Ig=@Ig,Osszeg=@Osszeg,Hatarido=@Hatarido,Befizetve=@Befizetve,Megjegyzes=@Megjegyzes WHERE Id=@id";
+            MySqlCommand command = new MySqlCommand(cmd, connection);
+
+            command.Parameters.AddWithValue("@Id", id);
+            command.Parameters.AddWithValue("@SzolgaltatasAzon", szamla.SzolgaltatasAzon);
+            command.Parameters.AddWithValue("@SzolgaltatasRovid", szamla.SzolgaltatasRovid);
+            command.Parameters.AddWithValue("@Tol", szamla.Tol);
+            command.Parameters.AddWithValue("@Ig", szamla.Ig);
+            command.Parameters.AddWithValue("@Osszeg", szamla.Osszeg);
+            command.Parameters.AddWithValue("@Hatarido", szamla.Hatarido);
+            command.Parameters.AddWithValue("@Befizetve", szamla.Befizetve);
+            command.Parameters.AddWithValue("@Megjegyzes", szamla.Megjegyzes);
+
+            int sorokSzama;
+
+            try
+            {
+                sorokSzama = command.ExecuteNonQuery();
+            }
+            catch (MySqlException)
+            {
+                sorokSzama = 0;
+            }
+
+            connection.Close();
+
+            string valasz = sorokSzama > 0 ? "Sikeres frissítés" : "frissítés";
             return valasz;
         }
     }
