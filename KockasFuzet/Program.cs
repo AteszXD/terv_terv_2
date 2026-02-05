@@ -11,6 +11,8 @@ namespace KockasFuzet
     {
         static void Main(string[] _)
         {
+
+            #region Menüpontok
             Console.WriteLine("------- Listázás -------");
             Console.WriteLine("1. Szolgáltatók listáza");
             Console.WriteLine("2. Szolgáltatások listázása");
@@ -37,6 +39,7 @@ namespace KockasFuzet
             Console.WriteLine("998. Random számla kiírása");          // View teszt
             Console.WriteLine("999. Kilépés");                        // Kilépés...
             Console.WriteLine();
+            #endregion
 
             string valasz = Console.ReadLine();
             Console.WriteLine();
@@ -59,6 +62,7 @@ namespace KockasFuzet
                     new SzamlaView().ShowSzamlaList(szamladb);
                     break;
                 #endregion
+
                 #region Felvétel
                 case "4":
                     Console.WriteLine(new SzolgaltatoController().CreateSzolgaltato(SzolgaltatoBekeres()));
@@ -275,6 +279,22 @@ namespace KockasFuzet
 
                 Szolgaltato szolgaltato = new Szolgaltato(rnev, tnev, ugyf);
                 return szolgaltato;
+            }
+        }
+
+        static void Menu()
+        {
+            Console.Clear();
+            
+            string[,] menuPontok = new string[2, 4]
+            {
+                { "Szolgáltató", "Szolgáltatások", "Számlák", "Kilépés" },
+                { "Listázás", "Rögzítás","Módosítás", "Felvétel" }
+            };
+
+            for (int i = 0; i < 4; i++)
+            {
+                Console.WriteLine(menuPontok[0,i]);
             }
         }
     }
