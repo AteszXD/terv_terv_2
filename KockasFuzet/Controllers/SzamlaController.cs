@@ -59,8 +59,8 @@ namespace KockasFuzet.Controllers
             {
                 return new List<Szamla>();
             }
-}
-
+        }
+        
         public string CreateSzamla(Szamla szamla)
         {
             MySqlConnection connection = new MySqlConnection();
@@ -111,7 +111,7 @@ namespace KockasFuzet.Controllers
             new SzamlaView().ShowSzamlaList(szamladb);
             Console.WriteLine();
 
-            Console.Write("A módosítandó számla Id-ja: ");
+            Console.Write("A módosítandó számla Id-je: ");
             int id = int.Parse(Console.ReadLine());
 
             string cmd = "UPDATE `szamla` SET Id=@Id,SzolgaltatasAzon=@SzolgaltatasAzon,SzolgaltatasRovid=@SzolgaltatasRovid,Tol=@Tol,Ig=@Ig,Osszeg=@Osszeg,Hatarido=@Hatarido,Befizetve=@Befizetve,Megjegyzes=@Megjegyzes WHERE Id=@id";
