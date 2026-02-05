@@ -63,6 +63,9 @@ namespace KockasFuzet
                     Console.WriteLine(new SzolgaltatasController().CreateSzolgaltatas(szolgaltatas));
 
                     break;
+                case "6":
+
+                    break;
                 case "996":
                     List<Szolgaltato> _szolgaltatodb = new SzolgaltatoController().GetSzolgaltatoList();
                     Random random = new Random();

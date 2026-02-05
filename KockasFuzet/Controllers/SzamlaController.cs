@@ -2,6 +2,8 @@
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System;
+using System.Data.SqlTypes;
+using System.CodeDom;
 
 namespace KockasFuzet.Controllers
 {
@@ -22,8 +24,11 @@ namespace KockasFuzet.Controllers
                 List<Szamla> szamlak = new List<Szamla>();
 
                 MySqlDataReader reader = command.ExecuteReader();
+
                 while (reader.Read())
                 {
+                    string _megj = reader.GetString("Megjegyzes");
+
                     szamlak.Add(new Szamla()
                     {
                         Id = reader.GetInt32("Id"),
@@ -33,11 +38,17 @@ namespace KockasFuzet.Controllers
                         Ig = reader.GetDateTime("Ig"),
                         Osszeg = reader.GetInt32("Osszeg"),
                         Hatarido = reader.GetDateTime("Hatarido"),
-                        Befizetve = reader.GetDateTime("Befizetve")//,
-                        //Megjegyzes = reader.GetString("Megjegyzes")
+                        Befizetve = reader.GetDateTime("Befizetve"),
+                        Megjegyzes = reader.GetString("Megjegyzes")
                     });
                 }
 
+                connection.Close();
+                return szamlak;
+            }
+            catch (SqlNullValueException)
+            {
+                Megjegyzes = " ";
                 connection.Close();
                 return szamlak;
             }
@@ -45,7 +56,33 @@ namespace KockasFuzet.Controllers
             {
                 return new List<Szamla>();
             }
+}
 
+        public string CreateSzamla(Szamla szamla)
+        {
+            MySqlConnection connection = new MySqlConnection();
+            string connectionString = "SERVER=localhost;DATABASE=kockasfuzet;UID=root;PASSWORD=;";
+            connection.ConnectionString = connectionString;
+            connection.Open();
+
+            string cmd = "INSERT INTO `szolgaltato`(`Id`, `SzolgaltatasAzon`, `SzolgaltatasRovid`, `Tol`, `Ig`, `Osszeg`, `Hatarido`, `Befizetve`, `Megjegyzes`) VALUES (null,@SzolgaltatasAzon,@SzolgaltatasRovid,@Tol,@Ig,@Osszeg,@Hatarido,@Befizetve,@Megjegyzes)";
+            MySqlCommand command = new MySqlCommand(cmd, connection);
+
+            command.Parameters.AddWithValue("@Rovidnev", szamla.Id);
+            command.Parameters.AddWithValue("@Nev", szamla.SzolgaltatasAzon);
+            command.Parameters.AddWithValue("@Ugyfelszolgalat", szamla.SzolgaltatasRovid);
+            command.Parameters.AddWithValue("@Tol", szamla.Tol);
+            command.Parameters.AddWithValue("@Ig", szamla.Ig);
+            command.Parameters.AddWithValue("@Osszeg", szamla.Osszeg);
+            command.Parameters.AddWithValue("@Hatarido", szamla.Hatarido);
+            command.Parameters.AddWithValue("@Befizetve", szamla.Befizetve);
+            command.Parameters.AddWithValue("@Megjegyzés", szamla.Megjegyzes);
+
+            int sorokSzama = command.ExecuteNonQuery();
+            connection.Close();
+
+            string valasz = sorokSzama > 0 ? "Sikeres rögzítés" : "Sikertelen rögzítés";
+            return valasz;
         }
     }
 }
