@@ -27,7 +27,15 @@ namespace KockasFuzet.Controllers
 
                 while (reader.Read())
                 {
-                    string _megj = reader.GetString("Megjegyzes");
+                    string _megj;
+                    try 
+                    {
+                        _megj = reader.GetString("Megjegyzes");
+                    }
+                    catch (SqlNullValueException)
+                    {
+                        _megj = " ";
+                    }
 
                     szamlak.Add(new Szamla()
                     {
@@ -39,16 +47,10 @@ namespace KockasFuzet.Controllers
                         Osszeg = reader.GetInt32("Osszeg"),
                         Hatarido = reader.GetDateTime("Hatarido"),
                         Befizetve = reader.GetDateTime("Befizetve"),
-                        Megjegyzes = reader.GetString("Megjegyzes")
+                        Megjegyzes = _megj
                     });
                 }
 
-                connection.Close();
-                return szamlak;
-            }
-            catch (SqlNullValueException)
-            {
-                Megjegyzes = " ";
                 connection.Close();
                 return szamlak;
             }
@@ -68,7 +70,6 @@ namespace KockasFuzet.Controllers
             string cmd = "INSERT INTO `szolgaltato`(`Id`, `SzolgaltatasAzon`, `SzolgaltatasRovid`, `Tol`, `Ig`, `Osszeg`, `Hatarido`, `Befizetve`, `Megjegyzes`) VALUES (null,@SzolgaltatasAzon,@SzolgaltatasRovid,@Tol,@Ig,@Osszeg,@Hatarido,@Befizetve,@Megjegyzes)";
             MySqlCommand command = new MySqlCommand(cmd, connection);
 
-            command.Parameters.AddWithValue("@Rovidnev", szamla.Id);
             command.Parameters.AddWithValue("@Nev", szamla.SzolgaltatasAzon);
             command.Parameters.AddWithValue("@Ugyfelszolgalat", szamla.SzolgaltatasRovid);
             command.Parameters.AddWithValue("@Tol", szamla.Tol);
