@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using KockasFuzet.Controllers;
 using KockasFuzet.Models;
 using KockasFuzet.Views;
-using KockasFuzet.Controllers;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Reflection;
 
 namespace KockasFuzet
 {
@@ -11,40 +12,41 @@ namespace KockasFuzet
     {
         static void Main(string[] _)
         {
-
-            #region Menüpontok
-            Console.WriteLine("------- Listázás -------");
-            Console.WriteLine("1. Szolgáltatók listáza");
-            Console.WriteLine("2. Szolgáltatások listázása");
-            Console.WriteLine("3. Számlák listázása");
-            Console.WriteLine();
-            Console.WriteLine("------- Felvétel -------");
-            Console.WriteLine("4. Szolgáltató felvétele");
-            Console.WriteLine("5. Szolgáltatás felvétele");
-            Console.WriteLine("6. Számla felvétele");
-            Console.WriteLine();
-            Console.WriteLine("------- Módosítás -------");
-            Console.WriteLine("7. Szolgáltató módosítása");
-            Console.WriteLine("8. Szolgáltatás módosítása");
-            Console.WriteLine("9. Számla módosítása");
-            Console.WriteLine();
-            Console.WriteLine("------- Törlés -------");
-            Console.WriteLine("10. Szolgáltató törlése");
-            Console.WriteLine("11. Szolgáltatás törlése");
-            Console.WriteLine("12. Számla törlése");
-            Console.WriteLine();
-            Console.WriteLine("------- Debug -------");
-            Console.WriteLine("996. Random szolgáltató kiírása");     // View teszt
-            Console.WriteLine("997. Random szolgáltatás kiírása");    // View teszt
-            Console.WriteLine("998. Random számla kiírása");          // View teszt
-            Console.WriteLine("999. Kilépés");                        // Kilépés...
-            Console.WriteLine();
-            #endregion
+            #region Menüpontok RÉGI
+            //Console.WriteLine("------- Listázás -------");
+            //Console.WriteLine("1. Szolgáltatók listáza");
+            //Console.WriteLine("2. Szolgáltatások listázása");
+            //Console.WriteLine("3. Számlák listázása");
+            //Console.WriteLine();
+            //Console.WriteLine("------- Felvétel -------");
+            //Console.WriteLine("4. Szolgáltató felvétele");
+            //Console.WriteLine("5. Szolgáltatás felvétele");
+            //Console.WriteLine("6. Számla felvétele");
+            //Console.WriteLine();
+            //Console.WriteLine("------- Módosítás -------");
+            //Console.WriteLine("7. Szolgáltató módosítása");
+            //Console.WriteLine("8. Szolgáltatás módosítása");
+            //Console.WriteLine("9. Számla módosítása");
+            //Console.WriteLine();
+            //Console.WriteLine("------- Törlés -------");
+            //Console.WriteLine("10. Szolgáltató törlése");
+            //Console.WriteLine("11. Szolgáltatás törlése");
+            //Console.WriteLine("12. Számla törlése");
+            //Console.WriteLine();
+            //Console.WriteLine("------- Debug -------");
+            //Console.WriteLine("996. Random szolgáltató kiírása");     // View teszt
+            //Console.WriteLine("997. Random szolgáltatás kiírása");    // View teszt
+            //Console.WriteLine("998. Random számla kiírása");          // View teszt
+            //Console.WriteLine("999. Kilépés");                        // Kilépés...
+            //Console.WriteLine();
 
             //string valasz = Console.ReadLine();
             //Console.WriteLine();
 
             //switch (valasz)
+            #endregion
+
+            #region Switch-Case
             int currentPoint = 0;
             do
             {
@@ -60,15 +62,29 @@ namespace KockasFuzet
                             }
                             break;
                         case ConsoleKey.UpArrow:
-                            if (currentPoint > 0)
+                            if (currentPoint > 2)
                             {
-                                currentPoint -= 1;
+                                currentPoint -= 3;
                             }
                             break;
                         case ConsoleKey.DownArrow:
                             {
-                                if (currentPoint < 12)
-                                    currentPoint += 1;
+                                if (currentPoint < 10)
+                                {
+                                    currentPoint += 3;
+                                }
+                            }
+                            break;
+                        case ConsoleKey.RightArrow:
+                            if (currentPoint < 12)
+                            {
+                                currentPoint += 1;
+                            }
+                            break;
+                        case ConsoleKey.LeftArrow:
+                            if (currentPoint > 0)
+                            {
+                                currentPoint -= 1;
                             }
                             break;
                     }
@@ -76,92 +92,125 @@ namespace KockasFuzet
                 switch (currentPoint)
                 {
                     #region Listázás
-                    case 1:
+                    case 0:
                         List<Szolgaltato> szolgaltatodb = new SzolgaltatoController().GetSzolgaltatoList();
                         new SzolgaltatoView().ShowSzolgaltatoList(szolgaltatodb);
+                        Console.WriteLine("Enterrel tovább...");
+                        Console.ReadLine();
+                        break;
+
+                    case 1:
+                        List<Szolgaltatas> szolgaltatasdb = new SzolgaltatasController().GetSzolgaltatasList();
+                        new SzolgaltatasView().ShowSzolgaltatasList(szolgaltatasdb);
+                        Console.WriteLine("Enterrel tovább...");
+                        Console.ReadLine();
                         break;
 
                     case 2:
-                        List<Szolgaltatas> szolgaltatasdb = new SzolgaltatasController().GetSzolgaltatasList();
-                        new SzolgaltatasView().ShowSzolgaltatasList(szolgaltatasdb);
-                        break;
-
-                    case 3:
                         List<Szamla> szamladb = new SzamlaController().GetSzamlaList();
                         new SzamlaView().ShowSzamlaList(szamladb);
+                        Console.WriteLine("Enterrel tovább...");
+                        Console.ReadLine();
                         break;
                     #endregion
 
                     #region Felvétel
-                    case 4:
+                    case 3:
                         Console.WriteLine(new SzolgaltatoController().CreateSzolgaltato(SzolgaltatoBekeres()));
+                        Console.WriteLine("Enterrel tovább...");
+                        Console.ReadLine();
+                        break;
+
+                    case 4:
+                        Console.WriteLine(new SzolgaltatasController().CreateSzolgaltatas(SzolgaltatasBekeres()));
+                        Console.WriteLine("Enterrel tovább...");
+                        Console.ReadLine();
                         break;
 
                     case 5:
-                        Console.WriteLine(new SzolgaltatasController().CreateSzolgaltatas(SzolgaltatasBekeres()));
-                        break;
-
-                    case 6:
                         Console.WriteLine(new SzamlaController().CreateSzamla(SzamlaBekeres()));
+                        Console.WriteLine("Enterrel tovább...");
+                        Console.ReadLine();
                         break;
                     #endregion
 
                     #region Módosítás
-                    case 7:
+                    case 6:
                         Console.WriteLine(new SzolgaltatoController().UpdateSzolgaltato(SzolgaltatoBekeres()));
+                        Console.WriteLine("Enterrel tovább...");
+                        Console.ReadLine();
+                        break;
+
+                    case 7:
+                        Console.WriteLine(new SzolgaltatasController().UpdateSzolgaltatas(SzolgaltatasBekeres()));
+                        Console.WriteLine("Enterrel tovább...");
+                        Console.ReadLine();
                         break;
 
                     case 8:
-                        Console.WriteLine(new SzolgaltatasController().UpdateSzolgaltatas(SzolgaltatasBekeres()));
-                        break;
-
-                    case 9:
                         Console.WriteLine(new SzamlaController().UpdateSzamla(SzamlaBekeres()));
+                        Console.WriteLine("Enterrel tovább...");
+                        Console.ReadLine();
                         break;
                     #endregion
 
                     #region Törlés
-                    case 10:
+                    case 9:
                         Console.WriteLine(new SzolgaltatoController().DeleteSzolgaltato());
+                        Console.WriteLine("Enterrel tovább...");
+                        Console.ReadLine();
+                        break;
+
+                    case 10:
+                        Console.WriteLine(new SzolgaltatasController().DeleteSzolgaltatas());
+                        Console.WriteLine("Enterrel tovább...");
+                        Console.ReadLine();
                         break;
 
                     case 11:
-                        Console.WriteLine(new SzolgaltatasController().DeleteSzolgaltatas());
-                        break;
-
-                    case 12:
                         Console.WriteLine(new SzamlaController().DeleteSzamla());
+                        Console.WriteLine("Enterrel tovább...");
+                        Console.ReadLine();
+                        break;
+                    #endregion
+
+                    #region Kilépés
+                    case 12:
+                        Environment.Exit(0);
                         break;
                     #endregion
 
                     #region Debug
-                    case 996:
+                    case 13:
                         List<Szolgaltato> _szolgaltatodb = new SzolgaltatoController().GetSzolgaltatoList();
                         Random random = new Random();
                         int i = random.Next(_szolgaltatodb.Count);
                         new SzolgaltatoView().ShowSzolgaltato(_szolgaltatodb[i]);
+                        Console.WriteLine("Enterrel tovább...");
+                        Console.ReadLine();
                         break;
 
-                    case 997:
+                    case 14:
                         List<Szolgaltatas> _szolgaltatasdb = new SzolgaltatasController().GetSzolgaltatasList();
                         random = new Random();
                         i = random.Next(_szolgaltatasdb.Count);
                         new SzolgaltatasView().ShowSzolgaltatas(_szolgaltatasdb[i]);
+                        Console.WriteLine("Enterrel tovább...");
+                        Console.ReadLine();
                         break;
 
-                    case 998:
+                    case 15:
                         List<Szamla> _szamladb = new SzamlaController().GetSzamlaList();
                         random = new Random();
                         i = random.Next(_szamladb.Count);
                         new SzamlaView().ShowSzamla(_szamladb[i]);
-                        break;
-
-                    case 999:
-                        Environment.Exit(0);
+                        Console.WriteLine("Enterrel tovább...");
+                        Console.ReadLine();
                         break;
                         #endregion
                 }
-            } while (currentPoint != 2);
+            } while (currentPoint != 12);
+            #endregion
         }
 
         static Szamla SzamlaBekeres()
@@ -311,73 +360,46 @@ namespace KockasFuzet
             return szolgaltato;
         }
 
-        //static void Menu()
-        //{
-        //    Console.Clear();
-
-        //    string[,] menuPontok = new string[2, 4]
-        //    {
-        //        { "Szolgáltató", "Szolgáltatások", "Számlák", "Kilépés" },
-        //        { "Listázás", "Rögzítás","Módosítás", "Felvétel" }
-        //    };
-
-        //    for (int i = 0; i < 4; i++)
-        //    {
-        //        Console.WriteLine(menuPontok[0,i]);
-        //    }
-        //}
-
         static void ShowMenu(int cPoint)
         {
-            string[] menuPontok = {
-                "Szolgáltatók listáza",
-                "Szolgáltatások listázása",
-                "Számlák listázása",
-                "Szolgáltatók rögzítése",
-                "Szolgáltatások rögzítése",
-                "Számlák rögzítése",
-                "Szolgáltatók módosítása",
-                "Szolgáltatások módosítása",
-                "Számlák módosítása",
-                "Szolgáltatók törlése",
-                "Szolgáltatások törlése",
-                "Számlák törlése"};
+            string[,] menuPontok = {
+        { "Szolgáltatók listázása", "Szolgáltatások listázása", "Számlák listázása" },
+        { "Szolgáltatók rögzítése", "Szolgáltatások rögzítése", "Számlák rögzítése" },
+        { "Szolgáltatók módosítása", "Szolgáltatások módosítása", "Számlák módosítása" },
+        { "Szolgáltatók törlése",    "Szolgáltatások törlése",    "Számlák törlése" },
+        { "Kilépés", "", "" }
+    };
 
             Console.Clear();
-            for (int i = 0; i < 12; i++)
-            {
+            int elemSzam = 0;
+            int oszlopSzelesseg = 30;
 
-            }
+            for (int i = 0; i < menuPontok.GetLength(0); i++)
+            {
+                for (int j = 0; j < menuPontok.GetLength(1); j++)
+                {
+                    if (!string.IsNullOrEmpty(menuPontok[i, j])) 
+                    {
+                        if (elemSzam == cPoint)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write($"> {menuPontok[i, j]}".PadRight(oszlopSzelesseg));
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.Write($"  {menuPontok[i, j]}".PadRight(oszlopSzelesseg));
+                        }
+                    }
 
-            if (cPoint == 0)
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
+                    elemSzam++;
+                }
+                if (i < menuPontok.GetLength(0) - 1)
+                {
+                    Console.WriteLine();
+                }
             }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.White;
-            }
-            Console.WriteLine("Személyes adatok bekérése");
-            if (cPoint == 1)
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.White;
-            }
-            Console.WriteLine("Személyes adatok kiírása");
-            if (cPoint == 2)
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.White;
-            }
-            Console.WriteLine("Kilépés");
-            Console.ForegroundColor = ConsoleColor.White;
-
+            Console.ResetColor();
         }
     }
 }
