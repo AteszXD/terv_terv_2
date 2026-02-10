@@ -19,23 +19,23 @@ namespace KockasFuzet.Views
 
         public void ShowSzolgaltatasList(List<Szolgaltatas> szolgaltatasok)
         {
-            Console.WriteLine("+---+-------------------------------+");
-            Console.WriteLine("|Id |             Név               |");
+            Console.WriteLine("┌───┬───────────────────────────────┐");
+            Console.WriteLine("│Id │             Név               │");
             foreach (Szolgaltatas szolgaltatas in szolgaltatasok)
             {
                 //120*30 méret
-                Console.WriteLine("+---+-------------------------------+");
+                Console.WriteLine("├───┼───────────────────────────────┤");
                 Console.WriteLine(SzolgaltatasToRow(szolgaltatas));
             }
-            Console.WriteLine("+---+-------------------------------+");
+            Console.WriteLine("└───┴───────────────────────────────┘");
         }
 
         private static string SzolgaltatasToRow(Szolgaltatas szolgaltatas)
         {
-            string row = "|";
+            string row = "│";
             row += szolgaltatas.Id;
-            row += new string(' ', 3 - szolgaltatas.Id.ToString().Length) + "|";
-            row += szolgaltatas.Nev.Length < 30 ? szolgaltatas.Nev + new string(' ', 30 - szolgaltatas.Nev.Length + 1) + "|" : szolgaltatas.Nev.Substring(0, 28) + "...|";
+            row += new string(' ', 3 - szolgaltatas.Id.ToString().Length) + "│";
+            row += szolgaltatas.Nev.Length < 30 ? szolgaltatas.Nev + new string(' ', 30 - szolgaltatas.Nev.Length + 1) + "│" : szolgaltatas.Nev.Substring(0, 28) + "...│";
             return row;
         }
     }

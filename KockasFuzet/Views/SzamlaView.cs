@@ -26,30 +26,30 @@ namespace KockasFuzet.Views
 
         public void ShowSzamlaList(List<Szamla> szamlak)
         {
-            Console.WriteLine("+---+----------------+-----------------+----------+----------+------+----------+----------+-----------------+");
-            Console.WriteLine("|Id |SzolgaltatasAzon|SzolgaltatasRovid|Tól       |Ig        |Összeg|Határidő  |Befizetve |Megjegyzés       |");
+            Console.WriteLine("┌───┬────────────────┬─────────────────┬──────────┬──────────┬──────┬──────────┬──────────┬─────────────────┐");
+            Console.WriteLine("│Id │SzolgaltatasAzon│SzolgaltatasRovid│Tól       │Ig        │Összeg│Határidő  │Befizetve │Megjegyzés       │");
             foreach (Szamla szamla in szamlak)
             {
                 //120*30 méret
-                Console.WriteLine("+---+----------------+-----------------+----------+----------+------+----------+----------+-----------------+");
+                Console.WriteLine("├───┼────────────────┼─────────────────┼──────────┼──────────┼──────┼──────────┼──────────┼─────────────────┤");
                 Console.WriteLine(SzamlaToRow(szamla));
             }
-            Console.WriteLine("+---+----------------+-----------------+----------+----------+------+----------+----------+-----------------+");
+            Console.WriteLine("└───┴────────────────┴─────────────────┴──────────┴──────────┴──────┴──────────┴──────────┴─────────────────┘");
         }
 
         private static string SzamlaToRow(Szamla szamla)
         {
-            string row = "|";
+            string row = "│";
             row += szamla.Id;
-            row += new string(' ', 3 - szamla.Id.ToString().Length) + "|";
-            row += szamla.SzolgaltatasAzon.ToString().Length < 16 ? szamla.SzolgaltatasAzon.ToString() + new string(' ', 16 - szamla.SzolgaltatasAzon.ToString().Length) + "|" : szamla.SzolgaltatasAzon.ToString().Substring(0, 14) + "...|";
-            row += szamla.SzolgaltatasRovid.Length < 17 ? szamla.SzolgaltatasRovid + new string(' ', 17 - szamla.SzolgaltatasRovid.Length) + "|" : szamla.SzolgaltatasRovid.Substring(0, 15) + "...|";
-            row += szamla.Tol.ToString("yyyy-MM-dd").Length < 10 ? szamla.Tol.ToString("yyyy-MM-dd") + new string(' ', 10 - szamla.Tol.ToString("yyyy-MM-dd").Length + 1) + "|" : szamla.Tol.ToString("yyyy-MM-dd").Substring(0, 10) + "|";
-            row += szamla.Ig.ToString("yyyy-MM-dd").Length < 10 ? szamla.Ig.ToString("yyyy-MM-dd") + new string(' ', 10 - szamla.Ig.ToString("yyyy-MM-dd").Length + 1) + "|" : szamla.Ig.ToString("yyyy-MM-dd").Substring(0, 10) + "|";
-            row += szamla.Osszeg.ToString().Length < 6 ? szamla.Osszeg.ToString() + new string(' ', 6 - szamla.Osszeg.ToString().Length) + "|" : szamla.Osszeg.ToString().Substring(0, 4) + "...|";
-            row += szamla.Hatarido.ToString("yyyy-MM-dd").Length < 10 ? szamla.Hatarido.ToString("yyyy-MM-dd") + new string(' ', 10 - szamla.Hatarido.ToString("yyyy-MM-dd").Length + 1) + "|" : szamla.Hatarido.ToString("yyyy-MM-dd").Substring(0, 10) + "|";
-            row += szamla.Befizetve.ToString("yyyy-MM-dd").Length < 10 ? szamla.Befizetve.ToString("yyyy-MM-dd") + new string(' ', 10 - szamla.Befizetve.ToString("yyyy-MM-dd").Length + 1) + "|" : szamla.Befizetve.ToString("yyyy-MM-dd").Substring(0, 10) + "|";
-            row += szamla.Megjegyzes.Length < 17 ? szamla.Megjegyzes + new string(' ', 17 - szamla.Megjegyzes.Length) + "|" : szamla.Megjegyzes.Substring(0, 14) + "...|";
+            row += new string(' ', 3 - szamla.Id.ToString().Length) + "│";
+            row += szamla.SzolgaltatasAzon.ToString().Length < 16 ? szamla.SzolgaltatasAzon.ToString() + new string(' ', 16 - szamla.SzolgaltatasAzon.ToString().Length) + "│" : szamla.SzolgaltatasAzon.ToString().Substring(0, 14) + "...│";
+            row += szamla.SzolgaltatasRovid.Length < 17 ? szamla.SzolgaltatasRovid + new string(' ', 17 - szamla.SzolgaltatasRovid.Length) + "│" : szamla.SzolgaltatasRovid.Substring(0, 15) + "...|";
+            row += szamla.Tol.ToString("yyyy-MM-dd").Length < 10 ? szamla.Tol.ToString("yyyy-MM-dd") + new string(' ', 10 - szamla.Tol.ToString("yyyy-MM-dd").Length + 1) + "│" : szamla.Tol.ToString("yyyy-MM-dd").Substring(0, 10) + "│";
+            row += szamla.Ig.ToString("yyyy-MM-dd").Length < 10 ? szamla.Ig.ToString("yyyy-MM-dd") + new string(' ', 10 - szamla.Ig.ToString("yyyy-MM-dd").Length + 1) + "│" : szamla.Ig.ToString("yyyy-MM-dd").Substring(0, 10) + "│";
+            row += szamla.Osszeg.ToString().Length < 6 ? szamla.Osszeg.ToString() + new string(' ', 6 - szamla.Osszeg.ToString().Length) + "│" : szamla.Osszeg.ToString().Substring(0, 4) + "...|";
+            row += szamla.Hatarido.ToString("yyyy-MM-dd").Length < 10 ? szamla.Hatarido.ToString("yyyy-MM-dd") + new string(' ', 10 - szamla.Hatarido.ToString("yyyy-MM-dd").Length + 1) + "│" : szamla.Hatarido.ToString("yyyy-MM-dd").Substring(0, 10) + "│";
+            row += szamla.Befizetve.ToString("yyyy-MM-dd") == "1494-11-06" ? new string(' ', 10) + "│" : szamla.Befizetve.ToString("yyyy-MM-dd").Length < 10 ? szamla.Befizetve.ToString("yyyy-MM-dd") + new string(' ', 10 - szamla.Befizetve.ToString("yyyy-MM-dd").Length + 1) + "│" : szamla.Befizetve.ToString("yyyy-MM-dd").Substring(0, 10) + "│";
+            row += szamla.Megjegyzes.Length < 17 ? szamla.Megjegyzes + new string(' ', 17 - szamla.Megjegyzes.Length) + "│" : szamla.Megjegyzes.Substring(0, 14) + "...|";
             return row;
         }
     }
