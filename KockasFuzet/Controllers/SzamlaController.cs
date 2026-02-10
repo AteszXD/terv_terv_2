@@ -104,11 +104,6 @@ namespace KockasFuzet.Controllers
             connection.ConnectionString = connectionString;
             connection.Open();
 
-            List<Szamla> szamladb = new SzamlaController().GetSzamlaList();
-            Console.WriteLine();
-            new SzamlaView().ShowSzamlaList(szamladb);
-            Console.WriteLine();
-
             Console.Write("A módosítandó számla Id-je: ");
             int id = int.Parse(Console.ReadLine());
 

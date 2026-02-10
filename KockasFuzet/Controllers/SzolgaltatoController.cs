@@ -71,11 +71,6 @@ namespace KockasFuzet.Controllers
             connection.ConnectionString = connectionString;
             connection.Open();
 
-            List<Szolgaltato> szolgaltatodb = new SzolgaltatoController().GetSzolgaltatoList();
-            Console.WriteLine();
-            new SzolgaltatoView().ShowSzolgaltatoList(szolgaltatodb);
-            Console.WriteLine();
-
             Console.Write("A módosítandó szolgáltató rövid neve: ");
             string rovidNev = Console.ReadLine();
 

@@ -96,11 +96,6 @@ namespace KockasFuzet.Controllers
             connection.ConnectionString = connectionString;
             connection.Open();
 
-            List<Szolgaltatas> szolgaltatasdb = new SzolgaltatasController().GetSzolgaltatasList();
-            Console.WriteLine();
-            new SzolgaltatasView().ShowSzolgaltatasList(szolgaltatasdb);
-            Console.WriteLine();
-
             Console.Write("A módosítandó szolgáltatás Id-je: ");
             int id = int.Parse(Console.ReadLine());
 

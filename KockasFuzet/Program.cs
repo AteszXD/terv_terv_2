@@ -4,7 +4,6 @@ using KockasFuzet.Views;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Reflection;
 
 namespace KockasFuzet
 {
@@ -93,6 +92,8 @@ namespace KockasFuzet
                 {
                     #region Listázás
                     case 0:
+                        Console.Clear();
+                        Console.WriteLine("--- SZOLGÁLTATÓK LISTÁZÁTA ---");
                         List<Szolgaltato> szolgaltatodb = new SzolgaltatoController().GetSzolgaltatoList();
                         new SzolgaltatoView().ShowSzolgaltatoList(szolgaltatodb);
                         Console.WriteLine("Enterrel tovább...");
@@ -100,6 +101,8 @@ namespace KockasFuzet
                         break;
 
                     case 1:
+                        Console.Clear();
+                        Console.WriteLine("--- SZOLGÁLTATÁSOK LISTÁZÁTA ---");
                         List<Szolgaltatas> szolgaltatasdb = new SzolgaltatasController().GetSzolgaltatasList();
                         new SzolgaltatasView().ShowSzolgaltatasList(szolgaltatasdb);
                         Console.WriteLine("Enterrel tovább...");
@@ -107,6 +110,8 @@ namespace KockasFuzet
                         break;
 
                     case 2:
+                        Console.Clear();
+                        Console.WriteLine("--- SZÁMLÁK LISTÁZÁTA ---");
                         List<Szamla> szamladb = new SzamlaController().GetSzamlaList();
                         new SzamlaView().ShowSzamlaList(szamladb);
                         Console.WriteLine("Enterrel tovább...");
@@ -116,18 +121,24 @@ namespace KockasFuzet
 
                     #region Felvétel
                     case 3:
+                        Console.Clear();
+                        Console.WriteLine("--- SZOLGÁLTATÓ RÖGZÍTÉSE ---");
                         Console.WriteLine(new SzolgaltatoController().CreateSzolgaltato(SzolgaltatoBekeres()));
                         Console.WriteLine("Enterrel tovább...");
                         Console.ReadLine();
                         break;
 
                     case 4:
+                        Console.Clear();
+                        Console.WriteLine("--- SZOLGÁLTATÁS RÖGZÍTÉSE ---");
                         Console.WriteLine(new SzolgaltatasController().CreateSzolgaltatas(SzolgaltatasBekeres()));
                         Console.WriteLine("Enterrel tovább...");
                         Console.ReadLine();
                         break;
 
                     case 5:
+                        Console.Clear();
+                        Console.WriteLine("--- SZÁMLA RÖGZÍTÉSE ---");
                         Console.WriteLine(new SzamlaController().CreateSzamla(SzamlaBekeres()));
                         Console.WriteLine("Enterrel tovább...");
                         Console.ReadLine();
@@ -136,18 +147,42 @@ namespace KockasFuzet
 
                     #region Módosítás
                     case 6:
+                        Console.Clear();
+
+                        Console.WriteLine("--- SZOLGÁLTATÓ MÓDOSÍTÁSA ---");
+                        szolgaltatodb = new SzolgaltatoController().GetSzolgaltatoList();
+                        Console.WriteLine();
+                        new SzolgaltatoView().ShowSzolgaltatoList(szolgaltatodb);
+
+                        Console.WriteLine();
                         Console.WriteLine(new SzolgaltatoController().UpdateSzolgaltato(SzolgaltatoBekeres()));
                         Console.WriteLine("Enterrel tovább...");
                         Console.ReadLine();
                         break;
 
                     case 7:
+                        Console.Clear();
+                        Console.WriteLine("--- SZOLGÁLTATÁS MÓDOSÍTÁSA ---");
+
+                        szolgaltatasdb = new SzolgaltatasController().GetSzolgaltatasList();
+                        Console.WriteLine();
+                        new SzolgaltatasView().ShowSzolgaltatasList(szolgaltatasdb);
+                        Console.WriteLine();
+
                         Console.WriteLine(new SzolgaltatasController().UpdateSzolgaltatas(SzolgaltatasBekeres()));
                         Console.WriteLine("Enterrel tovább...");
                         Console.ReadLine();
                         break;
 
                     case 8:
+                        Console.Clear();
+                        Console.WriteLine("--- SZÁMLA MÓDOSÍTÁSA ---");
+
+                        szamladb = new SzamlaController().GetSzamlaList();
+                        Console.WriteLine();
+                        new SzamlaView().ShowSzamlaList(szamladb);
+                        Console.WriteLine();
+
                         Console.WriteLine(new SzamlaController().UpdateSzamla(SzamlaBekeres()));
                         Console.WriteLine("Enterrel tovább...");
                         Console.ReadLine();
@@ -156,18 +191,24 @@ namespace KockasFuzet
 
                     #region Törlés
                     case 9:
+                        Console.Clear();
+                        Console.WriteLine("--- SZOLGÁLTATÓ TÖRLÉSE ---");
                         Console.WriteLine(new SzolgaltatoController().DeleteSzolgaltato());
                         Console.WriteLine("Enterrel tovább...");
                         Console.ReadLine();
                         break;
 
                     case 10:
+                        Console.Clear();
+                        Console.WriteLine("--- SZOLGÁLTATÁS TÖRLÉSE ---");
                         Console.WriteLine(new SzolgaltatasController().DeleteSzolgaltatas());
                         Console.WriteLine("Enterrel tovább...");
                         Console.ReadLine();
                         break;
 
                     case 11:
+                        Console.Clear();
+                        Console.WriteLine("--- SZÁMLA TÖRLÉSE ---");
                         Console.WriteLine(new SzamlaController().DeleteSzamla());
                         Console.WriteLine("Enterrel tovább...");
                         Console.ReadLine();
