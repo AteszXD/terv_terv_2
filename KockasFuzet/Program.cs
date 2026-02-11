@@ -253,7 +253,7 @@ namespace KockasFuzet
             } while (currentPoint != 12);
             #endregion
         }
-
+        
         static Szamla SzamlaBekeres()
         {
             int idSzamla = -1; // Amúgy se fogja használni
@@ -261,10 +261,9 @@ namespace KockasFuzet
             int szolgAzon;
             while (true)
             {
-                Console.Write("Szolgáltatás azonosító: ");
                 try
                 {
-                    szolgAzon = int.Parse(Console.ReadLine());
+                    szolgAzon = int.Parse(ReadCentered("Szolgáltatás azonosító: "));
                     if (szolgAzon > 0)
                     {
                         break;
@@ -277,16 +276,14 @@ namespace KockasFuzet
                 }
             }
 
-            Console.Write("Szolgáltató rövid neve: ");
-            string szolgRovid = Console.ReadLine();
+            string szolgRovid = ReadCentered("Szolgáltató rövid neve: ");
 
             DateTime tol;
             while (true)
             {
-                Console.Write("Tol (ÉÉÉÉ-HH-NN): ");
                 try
                 {
-                    tol = DateTime.ParseExact(Console.ReadLine(), "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                    tol = DateTime.ParseExact(ReadCentered("Tol (ÉÉÉÉ-HH-NN): "), "yyyy-MM-dd", CultureInfo.InvariantCulture);
                     break;
                 }
                 catch (Exception)
@@ -298,10 +295,9 @@ namespace KockasFuzet
             DateTime ig;
             while (true)
             {
-                Console.Write("Ig (ÉÉÉÉ-HH-NN): ");
                 try
                 {
-                    ig = DateTime.ParseExact(Console.ReadLine(), "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                    ig = DateTime.ParseExact(ReadCentered("Ig (ÉÉÉÉ-HH-NN): "), "yyyy-MM-dd", CultureInfo.InvariantCulture);
                     break;
                 }
                 catch (Exception)
@@ -313,10 +309,9 @@ namespace KockasFuzet
             int osszeg;
             while (true)
             {
-                Console.Write("Összeg (Ft): ");
                 try
                 {
-                    osszeg = int.Parse(Console.ReadLine());
+                    osszeg = int.Parse(ReadCentered("Összeg (Ft): "));
                     if (osszeg > 0)
                     {
                         break;
@@ -332,10 +327,9 @@ namespace KockasFuzet
             DateTime hatarido;
             while (true)
             {
-                Console.Write("Határidő (ÉÉÉÉ-HH-NN): ");
                 try
                 {
-                    hatarido = DateTime.ParseExact(Console.ReadLine(), "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                    hatarido = DateTime.ParseExact(ReadCentered("Határidő (ÉÉÉÉ-HH-NN): "), "yyyy-MM-dd", CultureInfo.InvariantCulture);
                     break;
                 }
                 catch (Exception)
@@ -344,10 +338,9 @@ namespace KockasFuzet
                 }
             }
 
-            Console.Write("Befizetve (ÉÉÉÉ-HH-NN, Üres ha még nem): ");
-            string inp = Console.ReadLine();
+            string inp = ReadCentered("Befizetve (ÉÉÉÉ-HH-NN, Üres ha még nem): ");
             DateTime befizetve;
-            if (string.IsNullOrEmpty(inp)) // 1494. november 6
+            if (string.IsNullOrEmpty(inp))
             {
                 befizetve = DateTime.ParseExact("1494-11-06", "yyyy-MM-dd", CultureInfo.InvariantCulture);
             }
@@ -368,8 +361,7 @@ namespace KockasFuzet
                 }
             }
 
-            Console.Write("Megjegyzés: ");
-            string megjegyzes = Console.ReadLine();
+            string megjegyzes = ReadCentered("Megjegyzés: ");
 
             Szamla szamla = new Szamla(idSzamla, szolgAzon, szolgRovid, tol, ig, osszeg, hatarido, befizetve, megjegyzes);
             return szamla;
@@ -379,8 +371,7 @@ namespace KockasFuzet
         {
             int idSzolg = -1; // Amúgy se fogja használni
 
-            Console.Write("Név: ");
-            string nev = Console.ReadLine();
+            string nev = ReadCentered("Név: ");
 
             Szolgaltatas szolgaltatas = new Szolgaltatas(idSzolg, nev);
             return szolgaltatas;
@@ -388,14 +379,12 @@ namespace KockasFuzet
 
         static Szolgaltato SzolgaltatoBekeres()
         {
-            Console.Write("Rövid Név: ");
-            string rnev = Console.ReadLine();
-
-            Console.Write("Név: ");
-            string tnev = Console.ReadLine();
-
-            Console.Write("Ügyfélszolgálat: ");
-            string ugyf = Console.ReadLine();
+            
+            string rnev = ReadCentered("Rövid Név: ");
+            
+            string tnev = ReadCentered("Név: ");
+            
+            string ugyf = ReadCentered("Ügyfélszolgálat: ");
 
             Szolgaltato szolgaltato = new Szolgaltato(rnev, tnev, ugyf);
             return szolgaltato;
