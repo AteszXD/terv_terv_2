@@ -96,8 +96,7 @@ namespace KockasFuzet.Controllers
             connection.ConnectionString = connectionString;
             connection.Open();
 
-            Console.Write("A módosítandó szolgáltatás Id-je: ");
-            int id = int.Parse(Console.ReadLine());
+            int id = int.Parse(Program.ReadCentered("A módosítandó szolgáltatás Id-je: "));
 
             string cmd = "UPDATE `szolgaltatas` SET Id=@id,Nev=@Nev WHERE Id=@Id";
             MySqlCommand command = new MySqlCommand(cmd, connection);
@@ -120,12 +119,11 @@ namespace KockasFuzet.Controllers
             connection.Open();
 
             List<Szolgaltatas> szolgaltatasdb = new SzolgaltatasController().GetSzolgaltatasList();
-            Console.WriteLine();
+            Program.WriteCentered("\n");
             new SzolgaltatasView().ShowSzolgaltatasList(szolgaltatasdb);
-            Console.WriteLine();
+            Program.WriteCentered("\n");
 
-            Console.Write("A törlendő szolgáltatás Id-je: ");
-            int id = int.Parse(Console.ReadLine());
+            int id = int.Parse(Program.ReadCentered("A törlendő szolgáltatás Id-je: "));
 
             string cmd = "DELETE FROM `szolgaltatas` WHERE Id=@Id";
             MySqlCommand command = new MySqlCommand(cmd, connection);

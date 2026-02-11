@@ -71,8 +71,7 @@ namespace KockasFuzet.Controllers
             connection.ConnectionString = connectionString;
             connection.Open();
 
-            Console.Write("A módosítandó szolgáltató rövid neve: ");
-            string rovidNev = Console.ReadLine();
+            string rovidNev = Program.ReadCentered("A módosítandó szolgáltató rövid neve: ");
 
             string cmd = "UPDATE `szolgaltato` SET RovidNev=@RovidNev,Nev=@Nev,Ugyfelszolgalat=@Ugyfelszolgalat WHERE RovidNev=@RovidNev";
             MySqlCommand command = new MySqlCommand(cmd, connection);
@@ -96,12 +95,11 @@ namespace KockasFuzet.Controllers
             connection.Open();
 
             List<Szolgaltato> szolgaltatodb = new SzolgaltatoController().GetSzolgaltatoList();
-            Console.WriteLine();
+            Program.WriteCentered("\n");
             new SzolgaltatoView().ShowSzolgaltatoList(szolgaltatodb);
-            Console.WriteLine();
+            Program.WriteCentered("\n");
 
-            Console.Write("A törlendő szolgáltató rövid neve: ");
-            string rnev = Console.ReadLine();
+            string rnev = Program.ReadCentered("A törlendő szolgáltató rövid neve: ");
 
             string cmd = "DELETE FROM `szolgaltato` WHERE RovidNev=@RovidNev";
             MySqlCommand command = new MySqlCommand(cmd, connection);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Jan 29. 08:14
+-- Létrehozás ideje: 2026. Feb 11. 18:41
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -29,10 +29,11 @@ USE `kockasfuzet`;
 -- Tábla szerkezet ehhez a táblához `szamla`
 --
 
+DROP TABLE IF EXISTS `szamla`;
 CREATE TABLE IF NOT EXISTS `szamla` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `SzolgaltatasAzon` int(11) NOT NULL,
-  `SzolgaltatasRovid` varchar(32) NOT NULL,
+  `SzolgaltatasRovid` varchar(8) NOT NULL,
   `Tol` date NOT NULL,
   `Ig` date NOT NULL,
   `Osszeg` int(11) NOT NULL,
@@ -42,14 +43,17 @@ CREATE TABLE IF NOT EXISTS `szamla` (
   PRIMARY KEY (`Id`),
   KEY `SzolgaltatasAzon` (`SzolgaltatasAzon`),
   KEY `SzolgaltatasRovid` (`SzolgaltatasRovid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `szamla`
 --
 
 INSERT INTO `szamla` (`Id`, `SzolgaltatasAzon`, `SzolgaltatasRovid`, `Tol`, `Ig`, `Osszeg`, `Hatarido`, `Befizetve`, `Megjegyzes`) VALUES
-(1, 3, 'MVM Next', '2026-01-01', '2026-01-31', 30000, '2026-01-31', '2026-01-29', NULL);
+(1, 3, 'MVM Next', '2026-01-01', '2026-01-31', 30000, '2026-01-31', '2026-01-29', ''),
+(2, 3, 'One', '2026-02-17', '2026-03-16', 43027, '2026-03-15', '2026-03-11', 'interneten'),
+(4, 7, 'Yettel', '2026-02-01', '2026-02-28', 11111, '2026-02-28', '1494-11-06', ''),
+(5, 8, 'MárkaABC', '2026-03-01', '2026-03-30', 78987, '2026-04-01', '2026-02-12', 'személyesen');
 
 -- --------------------------------------------------------
 
@@ -57,11 +61,12 @@ INSERT INTO `szamla` (`Id`, `SzolgaltatasAzon`, `SzolgaltatasRovid`, `Tol`, `Ig`
 -- Tábla szerkezet ehhez a táblához `szolgaltatas`
 --
 
+DROP TABLE IF EXISTS `szolgaltatas`;
 CREATE TABLE IF NOT EXISTS `szolgaltatas` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Nev` varchar(32) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
 --
 -- A tábla adatainak kiíratása `szolgaltatas`
@@ -72,7 +77,10 @@ INSERT INTO `szolgaltatas` (`Id`, `Nev`) VALUES
 (2, 'villany'),
 (3, 'földgáz'),
 (4, 'mobil'),
-(5, 'vezetékes telefon');
+(5, 'vezetékes telefon'),
+(6, 'internet'),
+(7, 'kábel TV'),
+(8, 'házhoz kaja');
 
 -- --------------------------------------------------------
 
@@ -80,8 +88,9 @@ INSERT INTO `szolgaltatas` (`Id`, `Nev`) VALUES
 -- Tábla szerkezet ehhez a táblához `szolgaltato`
 --
 
+DROP TABLE IF EXISTS `szolgaltato`;
 CREATE TABLE IF NOT EXISTS `szolgaltato` (
-  `RovidNev` varchar(32) NOT NULL,
+  `RovidNev` varchar(8) NOT NULL,
   `Nev` varchar(256) NOT NULL,
   `Ugyfelszolgalat` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`RovidNev`)
@@ -93,20 +102,12 @@ CREATE TABLE IF NOT EXISTS `szolgaltato` (
 
 INSERT INTO `szolgaltato` (`RovidNev`, `Nev`, `Ugyfelszolgalat`) VALUES
 ('ÉRV', 'ÉRV. Északmagyarországi Regionális Vízművek Zrt.', '3530 Miskolc, Corvin u. 2.'),
+('MárkaABC', 'Márka ABC Coop SzuperPlusz+ Magyarország Zrt', 'Valahol Budapesten'),
 ('MiVíz', 'MIVÍZ Kft.', '3530 Miskolc, Corvin u. 2.'),
 ('MVM Next', 'MVM Next Energiakereskedelmi Zrt.', '3530 Miskolc, Arany János utca 6-8.'),
-('Telecom', 'Magyar Telekom Nyrt.', '3525 Miskolc, Szentpáli utca 2 - 6.');
-
---
--- Megkötések a kiírt táblákhoz
---
-
---
--- Megkötések a táblához `szamla`
---
-ALTER TABLE `szamla`
-  ADD CONSTRAINT `szamla_ibfk_1` FOREIGN KEY (`SzolgaltatasAzon`) REFERENCES `szolgaltatas` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `szamla_ibfk_2` FOREIGN KEY (`SzolgaltatasRovid`) REFERENCES `szolgaltato` (`RovidNev`) ON DELETE CASCADE ON UPDATE CASCADE;
+('One', 'One Magyarország Nyrt.', '3525 Miskolc, Szentpáli utca 2-6'),
+('Telecom', 'Magyar Telekom Nyrt.', '3525 Miskolc, Szentpáli utca 2 - 6.'),
+('Yettel', 'Yettel Magyarország Nyrt', '3525 Miskolc, Szentpáli utca 2-6');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

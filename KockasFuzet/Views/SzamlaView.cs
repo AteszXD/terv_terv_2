@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using KockasFuzet.Models;
 
 namespace KockasFuzet.Views
@@ -13,28 +12,28 @@ namespace KockasFuzet.Views
 
         public void ShowSzamla(Szamla szamla)
         {
-            Console.WriteLine($"Id: {szamla.Id}");
-            Console.WriteLine($"SzolgaltatasAzon: {szamla.SzolgaltatasAzon}");
-            Console.WriteLine($"SzolgaltatasRovid: {szamla.SzolgaltatasRovid}");
-            Console.WriteLine($"Tól: {szamla.Tol.ToString("yyyy-MM-dd")}");
-            Console.WriteLine($"Ig: {szamla.Ig.ToString("yyyy-MM-dd")}");
-            Console.WriteLine($"Osszeg: {szamla.Osszeg}");
-            Console.WriteLine($"Határidő: {szamla.Hatarido.ToString("yyyy-MM-dd")}");
-            Console.WriteLine($"Befizetve: {szamla.Befizetve.ToString("yyyy-MM-dd")}");
-            Console.WriteLine($"Megjegyzés: {szamla.Megjegyzes}");
+            Program.WriteCentered($"Id: {szamla.Id}");
+            Program.WriteCentered($"SzolgaltatasAzon: {szamla.SzolgaltatasAzon}");
+            Program.WriteCentered($"SzolgaltatasRovid: {szamla.SzolgaltatasRovid}");
+            Program.WriteCentered($"Tól: {szamla.Tol.ToString("yyyy-MM-dd")}");
+            Program.WriteCentered($"Ig: {szamla.Ig.ToString("yyyy-MM-dd")}");
+            Program.WriteCentered($"Osszeg: {szamla.Osszeg}");
+            Program.WriteCentered($"Határidő: {szamla.Hatarido.ToString("yyyy-MM-dd")}");
+            Program.WriteCentered($"Befizetve: {szamla.Befizetve.ToString("yyyy-MM-dd")}");
+            Program.WriteCentered($"Megjegyzés: {szamla.Megjegyzes}");
         }
 
         public void ShowSzamlaList(List<Szamla> szamlak)
         {
-            Console.WriteLine("┌───┬────────────────┬─────────────────┬──────────┬──────────┬──────┬──────────┬──────────┬─────────────────┐");
-            Console.WriteLine("│Id │SzolgaltatasAzon│SzolgaltatasRovid│Tól       │Ig        │Összeg│Határidő  │Befizetve │Megjegyzés       │");
+            Program.WriteCentered("┌───┬────────────────┬─────────────────┬──────────┬──────────┬──────┬──────────┬──────────┬─────────────────┐");
+            Program.WriteCentered("│Id │SzolgaltatasAzon│SzolgaltatasRovid│Tól       │Ig        │Összeg│Határidő  │Befizetve │Megjegyzés       │");
             foreach (Szamla szamla in szamlak)
             {
                 //120*30 méret
-                Console.WriteLine("├───┼────────────────┼─────────────────┼──────────┼──────────┼──────┼──────────┼──────────┼─────────────────┤");
-                Console.WriteLine(SzamlaToRow(szamla));
+                Program.WriteCentered("├───┼────────────────┼─────────────────┼──────────┼──────────┼──────┼──────────┼──────────┼─────────────────┤");
+                Program.WriteCentered(SzamlaToRow(szamla));
             }
-            Console.WriteLine("└───┴────────────────┴─────────────────┴──────────┴──────────┴──────┴──────────┴──────────┴─────────────────┘");
+            Program.WriteCentered("└───┴────────────────┴─────────────────┴──────────┴──────────┴──────┴──────────┴──────────┴─────────────────┘");
         }
 
         private static string SzamlaToRow(Szamla szamla)

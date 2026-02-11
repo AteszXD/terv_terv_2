@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using KockasFuzet.Models;
 
 namespace KockasFuzet.Views
@@ -13,24 +12,24 @@ namespace KockasFuzet.Views
 
         public void ShowSzolgaltato(Szolgaltato szolgaltato)
         {
-            Console.WriteLine($"Rövid név: {szolgaltato.RovidNev}");
-            Console.WriteLine($"Név: {szolgaltato.Nev}");
-            Console.WriteLine("Ügyfélszolgálat:");
-            Console.WriteLine($"Cím: {szolgaltato.Ugyfelszolgalat}");
-            Console.WriteLine($"Telefon: ");
+            Program.WriteCentered($"Rövid név: {szolgaltato.RovidNev}");
+            Program.WriteCentered($"Név: {szolgaltato.Nev}");
+            Program.WriteCentered("Ügyfélszolgálat:");
+            Program.WriteCentered($"Cím: {szolgaltato.Ugyfelszolgalat}");
+            Program.WriteCentered($"Telefon: ");
         }
 
         public void ShowSzolgaltatoList(List<Szolgaltato> szolgaltatok)
         {
-            Console.WriteLine("┌────────┬───────────────────────────────┬───────────────────────────────┬─────────────┐");
-            Console.WriteLine("│Rövidnév│             Név               │        Ügyfélszolgálat        │   Telefon   │");
+            Program.WriteCentered("┌────────┬───────────────────────────────┬───────────────────────────────┬─────────────┐");
+            Program.WriteCentered("│Rövidnév│             Név               │        Ügyfélszolgálat        │   Telefon   │");
             foreach (Szolgaltato szolgaltato in szolgaltatok)
             {
                 //120*30 méret
-                Console.WriteLine("├────────┼───────────────────────────────┼───────────────────────────────┼─────────────┤");
-                Console.WriteLine(SzolgaltatoToRow(szolgaltato));
+                Program.WriteCentered("├────────┼───────────────────────────────┼───────────────────────────────┼─────────────┤");
+                Program.WriteCentered(SzolgaltatoToRow(szolgaltato));
             }
-            Console.WriteLine("└────────┴───────────────────────────────┴───────────────────────────────┴─────────────┘");
+            Program.WriteCentered("└────────┴───────────────────────────────┴───────────────────────────────┴─────────────┘");
         }
 
         private static string SzolgaltatoToRow(Szolgaltato szolgaltato)

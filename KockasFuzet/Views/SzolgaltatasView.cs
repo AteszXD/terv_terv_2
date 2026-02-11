@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using KockasFuzet.Models;
 
 namespace KockasFuzet.Views
@@ -13,21 +12,21 @@ namespace KockasFuzet.Views
 
         public void ShowSzolgaltatas(Szolgaltatas szolgaltatas)
         {
-            Console.WriteLine($"Id: {szolgaltatas.Id}");
-            Console.WriteLine($"Név: {szolgaltatas.Nev}");
+            Program.WriteCentered($"Id: {szolgaltatas.Id}");
+            Program.WriteCentered($"Név: {szolgaltatas.Nev}");
         }
 
         public void ShowSzolgaltatasList(List<Szolgaltatas> szolgaltatasok)
         {
-            Console.WriteLine("┌───┬───────────────────────────────┐");
-            Console.WriteLine("│Id │             Név               │");
+            Program.WriteCentered("┌───┬───────────────────────────────┐");
+            Program.WriteCentered("│Id │             Név               │");
             foreach (Szolgaltatas szolgaltatas in szolgaltatasok)
             {
                 //120*30 méret
-                Console.WriteLine("├───┼───────────────────────────────┤");
-                Console.WriteLine(SzolgaltatasToRow(szolgaltatas));
+                Program.WriteCentered("├───┼───────────────────────────────┤");
+                Program.WriteCentered(SzolgaltatasToRow(szolgaltatas));
             }
-            Console.WriteLine("└───┴───────────────────────────────┘");
+            Program.WriteCentered("└───┴───────────────────────────────┘");
         }
 
         private static string SzolgaltatasToRow(Szolgaltatas szolgaltatas)
